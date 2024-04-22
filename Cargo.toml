@@ -2,7 +2,7 @@
 name = "localsend"
 version = "0.1.2"
 authors = ["zpp0196 zpp0196@gmail.com"]
-edition = "2024"
+edition = "2021"
 license = "MIT"
 repository = "https://github.com/pepa65/localsend-rs"
 

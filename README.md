@@ -1,17 +1,13 @@
 # localsend-rs
-
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
-
 ```bash
 cargo install --git https://github.com/pepa65/localsend-rs
 ```
 
 ## Usage
-
 ### Send
-
 ```bash
 # send text only
 localsend send "text to sent"
@@ -24,7 +20,6 @@ localsend send "text to sent" /path/to/file ...
 ```
 
 ### Receive
-
 ```bash
 # receive files and save to $(pwd)
 localsend receive
@@ -36,8 +31,25 @@ localsend receive --dest /path/to/save
 localsend receive --quick-save
 ```
 
-## Roadmap
+### Help
+```
+Usage: localsend [OPTIONS] <COMMAND>
 
+Commands:
+  receive  Run as receive server
+  send     Run as send client
+  help     Print this message or the help of the given subcommand(s)
+
+Options:
+      --alias <ALIAS>          Alias of localsend, use hostname by default [env: LOCALSEND_ALIAS=]
+      --multicast <MULTICAST>  Multicast address of localsend [env: LOCALSEND_MULTICAST=] [default: 224.0.0.167]
+      --port <PORT>            Port of localsend [env: LOCALSEND_PORT=] [default: 53317]
+      --http-port <HTTP_PORT>  Port of localsend http server [env: LOCALSEND_HTTP_PORT=] [default: 53318]
+      --nerd                   Use nerd fonts
+  -h, --help                   Print help
+```
+
+## Roadmap
 - [x] Settings
     - [x] Device alias
     - [x] Device fingerprint
@@ -62,7 +74,6 @@ localsend receive --quick-save
     - [ ] ~~Receive request~~(not in plan)
 
 ## Thanks
-
 * [localsend/localsend](https://github.com/localsend/localsend) [#11](https://github.com/localsend/localsend/issues/11)
 * [localsend/protocol](https://github.com/localsend/protocol)
 * [notjedi/localsend-rs](https://github.com/notjedi/localsend-rs)

@@ -25,8 +25,8 @@ struct Args {
     alias: Option<String>,
 
     /// Multicast address of localsend
-    #[arg(long, env = "LOCALSEND_MULTIADDR", default_value = DEFAULT_MULTICAST)]
-    multiaddr: Ipv4Addr,
+    #[arg(long, env = "LOCALSEND_MULTICAST", default_value = DEFAULT_MULTICAST)]
+    multicast: Ipv4Addr,
 
     /// Port of localsend
     #[arg(long, env = "LOCALSEND_PORT", default_value_t = DEFAULT_PORT)]
@@ -36,9 +36,9 @@ struct Args {
     #[arg(long, env = "LOCALSEND_HTTP_PORT", default_value_t = DEFAULT_HTTP_PORT)]
     http_port: u16,
 
-    /// Do not use nerd fonts
+    /// Use nerd fonts
     #[arg(long)]
-    no_nerd: bool,
+    nerd: bool,
 
     #[clap(subcommand)]
     cmd: SubCommand,
@@ -159,10 +159,10 @@ async fn main() -> Result<()> {
     }
 
     let scanner =
-        MulticastDeviceScanner::new(&device, args.multiaddr, args.port, args.http_port).await?;
+        MulticastDeviceScanner::new(&device, args.multicast, args.port, args.http_port).await?;
     let scanner = Arc::new(scanner);
     let mut ui = PromptUI::default();
-    ui.use_nerd_fonts = !args.no_nerd;
+    ui.use_nerd_fonts = args.nerd;
 
     if args.is_receive_mode() {
         let scanner = scanner.clone();
@@ -206,7 +206,7 @@ async fn main() -> Result<()> {
                     .await
                     .unwrap();
 
-                let mut pb = FileProgressBar::new(pb_files, !args.no_nerd);
+                let mut pb = FileProgressBar::new(pb_files, args.nerd);
                 while let Some(progress) = progress_rx.recv().await {
                     pb.update(progress);
                 }
@@ -219,7 +219,7 @@ async fn main() -> Result<()> {
 
     let run = || async {
         let (progress_tx, mut progress_rx) = tokio::sync::mpsc::channel::<UploadProgress>(100);
-        let mut pb = FileProgressBar::new(send_files.to_dto_map(), !args.no_nerd);
+        let mut pb = FileProgressBar::new(send_files.to_dto_map(), args.nerd);
         tokio::spawn(async move {
             while let Some(progress) = progress_rx.recv().await {
                 pb.update(progress);

@@ -18,9 +18,9 @@ pub struct MulticastDeviceScanner {
 }
 
 impl MulticastDeviceScanner {
-    pub async fn new(device: &Device, multiaddr: Ipv4Addr, port: u16, http_port: u16) -> std::io::Result<Self> {
+    pub async fn new(device: &Device, multicast: Ipv4Addr, port: u16, http_port: u16) -> std::io::Result<Self> {
         let socket = UdpSocket::bind((Ipv4Addr::UNSPECIFIED, port)).await?;
-        socket.join_multicast_v4(multiaddr, Ipv4Addr::UNSPECIFIED)?;
+        socket.join_multicast_v4(multicast, Ipv4Addr::UNSPECIFIED)?;
 
         let device = MulticastDto::v2(
             device.alias.clone(),
@@ -35,7 +35,7 @@ impl MulticastDeviceScanner {
         Ok(Self {
             socket,
             device,
-            addr: (multiaddr, port).into(),
+            addr: (multicast, port).into(),
             announce_msg,
         })
     }
