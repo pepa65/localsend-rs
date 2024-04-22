@@ -1,10 +1,10 @@
 [package]
 name = "localsend"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["zpp0196 zpp0196@gmail.com"]
-edition = "2021"
+edition = "2024"
 license = "MIT"
-repository = "https://github.com/zpp0196/localsend-rs"
+repository = "https://github.com/pepa65/localsend-rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

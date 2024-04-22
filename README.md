@@ -5,7 +5,7 @@ CLI implementation of [localsend](https://github.com/localsend/localsend).
 ## Install
 
 ```bash
-$ cargo install --git https://github.com/zpp0196/localsend-rs.git
+cargo install --git https://github.com/pepa65/localsend-rs
 ```
 
 ## Usage
@@ -14,26 +14,26 @@ $ cargo install --git https://github.com/zpp0196/localsend-rs.git
 
 ```bash
 # send text only
-$ localsend send "text to sent"
+localsend send "text to sent"
 
 # send files
-$ localsend send /path/to/file1 /path/to/file2 ...
+localsend send /path/to/file1 /path/to/file2 ...
 
 # send mixed texts and files
-$ localsend send "text to sent" /path/to/file ...
+localsend send "text to sent" /path/to/file ...
 ```
 
 ### Receive
 
 ```bash
 # receive files and save to $(pwd)
-$ localsend receive
+localsend receive
 
 # receive files and save to path
-$ localsend receive --dest /path/to/save
+localsend receive --dest /path/to/save
 
 # receive all files automatically
-$ localsend receive --quick-save
+localsend receive --quick-save
 ```
 
 ## Roadmap
@@ -66,3 +66,4 @@ $ localsend receive --quick-save
 * [localsend/localsend](https://github.com/localsend/localsend) [#11](https://github.com/localsend/localsend/issues/11)
 * [localsend/protocol](https://github.com/localsend/protocol)
 * [notjedi/localsend-rs](https://github.com/notjedi/localsend-rs)
+* [zpp0196/localsend-rs](https://github.com/zpp0196/localsend-rs)
