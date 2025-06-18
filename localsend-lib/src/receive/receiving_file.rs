@@ -4,7 +4,7 @@ use crate::send::FileStatus;
 
 #[derive(Debug, Clone)]
 pub struct ReceivingFile {
-    pub file: FileDto,
-    pub status: FileStatus,
-    pub token: Option<String>,
+	pub file: FileDto,
+	pub status: FileStatus,
+	pub token: Option<String>,
 }

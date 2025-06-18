@@ -1,4 +1,4 @@
-# localsend-rs
+# localsend-rs 0.2.2
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
@@ -33,20 +33,20 @@ localsend receive --quick-save
 
 ### Help
 ```
-Usage: localsend [OPTIONS] <COMMAND>
-
-Commands:
+localsend-rs 0.2.2 - CLI implementation of localsend
+USAGE: localsend [OPTIONS] <COMMAND>
+COMMANDS:
   receive  Run as receive server
   send     Run as send client
   help     Print this message or the help of the given subcommand(s)
-
-Options:
+OPTIONS:
       --alias <ALIAS>          Alias of localsend, use hostname by default [env: LOCALSEND_ALIAS=]
       --multicast <MULTICAST>  Multicast address of localsend [env: LOCALSEND_MULTICAST=] [default: 224.0.0.167]
       --port <PORT>            Port of localsend [env: LOCALSEND_PORT=] [default: 53317]
       --http-port <HTTP_PORT>  Port of localsend http server [env: LOCALSEND_HTTP_PORT=] [default: 53318]
       --nerd                   Use nerd fonts
   -h, --help                   Print help
+  -V, --version                Print version
 ```
 
 ## Roadmap
