@@ -216,7 +216,7 @@ async fn upload(addr: SocketAddr, query: HashMap<String, String>, body: Body, st
 
 	let save_file = || async {
 		let stream = body.into_data_stream();
-		let stream = stream.map_err(|e| io::Error::other(e));
+		let stream = stream.map_err(io::Error::other);
 		let reader = StreamReader::new(stream);
 		pin_mut!(reader);
 
