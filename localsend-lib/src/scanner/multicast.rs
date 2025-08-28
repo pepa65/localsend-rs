@@ -4,8 +4,8 @@ use std::{
 };
 
 use localsend_proto::{
-	dto::{MulticastDto, RegisterDto},
 	Device, DeviceType,
+	dto::{MulticastDto, RegisterDto},
 };
 use tokio::net::UdpSocket;
 

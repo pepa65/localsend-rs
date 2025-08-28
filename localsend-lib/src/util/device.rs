@@ -5,10 +5,10 @@ use uuid::Uuid;
 use crate::Result;
 
 pub fn alias() -> String {
-	if let Ok(Ok(name)) = hostname::get().map(OsString::into_string) {
-		if !name.is_empty() {
-			return name;
-		}
+	if let Ok(Ok(name)) = hostname::get().map(OsString::into_string)
+		&& !name.is_empty()
+	{
+		return name;
 	}
 	"Desktop CLI".to_string()
 }
@@ -29,10 +29,10 @@ pub fn device_model() -> String {
 }
 
 pub fn fingerprint() -> String {
-	if let Some(uid) = std::option_env!("LOCALSEND_FINGERPRINT") {
-		if !uid.is_empty() {
-			return uid.to_string();
-		}
+	if let Some(uid) = std::option_env!("LOCALSEND_FINGERPRINT")
+		&& !uid.is_empty()
+	{
+		return uid.to_string();
 	}
 	Uuid::new_v4().to_string()
 }

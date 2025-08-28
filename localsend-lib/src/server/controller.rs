@@ -1,14 +1,14 @@
 use std::{collections::HashMap, io, net::SocketAddr};
 
 use axum::{
+	Json,
 	body::Body,
 	extract::{ConnectInfo, Query, State},
-	Json,
 };
-use futures_util::{pin_mut, TryStreamExt};
+use futures_util::{TryStreamExt, pin_mut};
 use localsend_proto::{
-	dto::{PrepareUploadRequestDto, PrepareUploadResponseDto},
 	DEFAULT_PORT,
+	dto::{PrepareUploadRequestDto, PrepareUploadResponseDto},
 };
 use tokio::{
 	fs::File,
@@ -19,10 +19,10 @@ use tokio_util::io::StreamReader;
 use super::MutexServerState;
 
 use crate::{
+	Result,
 	receive::{ReceiveError, ReceiveSession, ReceiveSessionStatus, ReceivingFile},
 	send::{FileStatus, SendError, UploadProgress},
 	server::ClientMessage,
-	Result,
 };
 
 pub async fn cancel_v1(State(state): State<MutexServerState>) -> Result<()> {
@@ -36,10 +36,10 @@ pub async fn cancel_v2(Query(query): Query<HashMap<String, String>>, State(state
 	let remote_session_id = query.get("sessionId").ok_or(SendError::NoPermission)?;
 	log::debug!("remote sessionId: {}", remote_session_id);
 	let mut state = state.lock().await;
-	if let Some(session) = &state.send_session {
-		if session.remote_session_id.as_ref() != Some(remote_session_id) {
-			return Err(SendError::NoPermission)?;
-		}
+	if let Some(session) = &state.send_session
+		&& session.remote_session_id.as_ref() != Some(remote_session_id)
+	{
+		return Err(SendError::NoPermission)?;
 	}
 	let session = state.send_session.take().ok_or(SendError::NoPermission)?;
 	session.cancel_by_receiver().await?;
@@ -98,10 +98,10 @@ async fn prepare_upload(addr: SocketAddr, state: MutexServerState, dto: PrepareU
 			let state = self.0.clone();
 			tokio::task::spawn_blocking(move || {
 				let mut state = state.blocking_lock();
-				if let Some(session) = &state.receive_session {
-					if session.status == ReceiveSessionStatus::Waiting {
-						state.receive_session = None;
-					}
+				if let Some(session) = &state.receive_session
+					&& session.status == ReceiveSessionStatus::Waiting
+				{
+					state.receive_session = None;
 				}
 			});
 		}
@@ -216,16 +216,16 @@ async fn upload(addr: SocketAddr, query: HashMap<String, String>, body: Body, st
 
 	let save_file = || async {
 		let stream = body.into_data_stream();
-		let stream = stream.map_err(|e| io::Error::new(io::ErrorKind::Other, e));
+		let stream = stream.map_err(|e| io::Error::other(e));
 		let reader = StreamReader::new(stream);
 		pin_mut!(reader);
 
 		const BUF_SIZE: usize = 1024 * 8;
 		let path = std::path::Path::new(destination).join(&receiving_file.file.file_name);
-		if let Some(path) = path.parent() {
-			if !path.exists() {
-				tokio::fs::create_dir_all(path).await?;
-			}
+		if let Some(path) = path.parent()
+			&& !path.exists()
+		{
+			tokio::fs::create_dir_all(path).await?;
 		}
 
 		let file = File::create(&path).await?;

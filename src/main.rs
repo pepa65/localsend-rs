@@ -17,7 +17,11 @@ use crate::ui::{FileProgressBar, InteractiveUI};
 mod ui;
 
 #[derive(Parser)]
-#[command(version, about, help_template("{name} {version} - {about}\nUSAGE: {usage}\nCOMMANDS:\n{subcommands}\nOPTIONS:\n{options}"))]
+#[command(
+	version,
+	about,
+	help_template("{name} {version} - {about}\nUSAGE: {usage}\nCOMMANDS:\n{subcommands}\nOPTIONS:\n{options}")
+)]
 struct Args {
 	/// Alias of localsend, use hostname by default
 	#[arg(long, env = "LOCALSEND_ALIAS")]
@@ -157,10 +161,10 @@ async fn main() -> Result<()> {
 			}
 		});
 
-		if let SubCommand::Receive(args) = args.cmd {
-			if args.quick_save {
-				std::future::pending::<()>().await
-			}
+		if let SubCommand::Receive(args) = args.cmd
+			&& args.quick_save
+		{
+			std::future::pending::<()>().await
 		}
 
 		let message = ui.show_loading("Waiting".to_string(), async move { server_rx.recv().await }).await;
