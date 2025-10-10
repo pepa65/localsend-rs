@@ -25,6 +25,7 @@ itertools = "0.14"
 localsend-lib = { path = "localsend-lib" }
 localsend-proto = { path = "localsend-proto" }
 log = "0.4.20"
+openssl-sys = { version = "0.9.104", features = ["vendored"] }
 simple_logger = "5"
 tokio = { version = "1.35.1", features = ["rt-multi-thread"] }
 
