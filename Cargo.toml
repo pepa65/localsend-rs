@@ -1,6 +1,6 @@
 [package]
 name = "localsend-rs"
-version = "0.2.35"
+version = "0.2.36"
 edition = "2024"
 authors = ["zpp0196 <zpp0196@gmail.com>", "github.com/pepa65"]
 description = "CLI implementation of localsend"
