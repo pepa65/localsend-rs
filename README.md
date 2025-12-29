@@ -1,4 +1,4 @@
-# localsend-rs 0.2.54
+# localsend-rs 0.2.55
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
@@ -33,7 +33,7 @@ localsend receive --quick-save
 
 ### Help
 ```
-localsend-rs 0.2.54 - CLI implementation of localsend
+localsend-rs 0.2.55 - CLI implementation of localsend
 USAGE: localsend [OPTIONS] <COMMAND>
 COMMANDS:
   receive  Run as receive server
