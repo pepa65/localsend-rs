@@ -11,13 +11,9 @@ license = "MIT"
 name = "localsnd"
 path = "src/main.rs"
 
-[patch.crates-io]
+[dependencies]
 localsend-lib = { path = "localsend-lib" }
 localsend-proto = { path = "localsend-proto" }
-
-[dependencies]
-localsend-lib = "0.1.0"
-localsend-proto = "0.1.0"
 anyhow = "1.0.79"
 async-trait = "0.1.77"
 clap = { version = "4.4.18", features = ["derive", "env"] }

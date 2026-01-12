@@ -1,4 +1,5 @@
 [package]
+publish = false
 name = "localsend-proto"
 version = "0.1.1"
 authors = ["zpp0196 zpp0196@gmail.com"]
