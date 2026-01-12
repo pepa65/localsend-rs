@@ -10,25 +10,25 @@ cargo install --git https://github.com/pepa65/localsnd
 ### Send
 ```bash
 # send text only
-localsend send "text to sent"
+localsnd send "text to sent"
 
 # send files
-localsend send /path/to/file1 /path/to/file2 ...
+localsnd send /path/to/file1 /path/to/file2 ...
 
 # send mixed texts and files
-localsend send "text to sent" /path/to/file ...
+localsnd send "text to sent" /path/to/file ...
 ```
 
 ### Receive
 ```bash
 # receive files and save to $(pwd)
-localsend receive
+localsnd receive
 
 # receive files and save to path
-localsend receive --dest /path/to/save
+localsnd receive --dest /path/to/save
 
 # receive all files automatically
-localsend receive --quick-save
+localsnd receive --quick-save
 ```
 
 ### Help
