@@ -1,9 +1,9 @@
-# localsend-rs 0.2.59
+# localsnd 0.3.0
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
 ```bash
-cargo install --git https://github.com/pepa65/localsend-rs
+cargo install --git https://github.com/pepa65/localsnd
 ```
 
 ## Usage
@@ -33,8 +33,8 @@ localsend receive --quick-save
 
 ### Help
 ```
-localsend-rs 0.2.59 - CLI implementation of localsend
-USAGE: localsend [OPTIONS] <COMMAND>
+localsnd 0.3.0 - CLI implementation of localsend
+USAGE: localsnd [OPTIONS] <COMMAND>
 COMMANDS:
   receive  Run as receive server
   send     Run as send client

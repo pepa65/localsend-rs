@@ -1,14 +1,14 @@
 [package]
-name = "localsend-rs"
-version = "0.2.59"
+name = "localsnd"
+version = "0.3.0"
 edition = "2024"
 authors = ["zpp0196 <zpp0196@gmail.com>", "github.com/pepa65"]
 description = "CLI implementation of localsend"
-repository = "https://github.com/pepa65/localsend-rs"
+repository = "https://github.com/pepa65/localsnd"
 license = "MIT"
 
 [[bin]]
-name = "localsend"
+name = "localsnd"
 path = "src/main.rs"
 
 [dependencies]
