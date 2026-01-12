@@ -4,7 +4,7 @@ use clap::Parser;
 use itertools::Itertools;
 use simple_logger::SimpleLogger;
 use crate::ui::{FileProgressBar, InteractiveUI};
-use crate::localsend_lib::{start_api_server, ClientMessage, SendError, SendingFiles, SendSession, MulticastDeviceScanner, ServerMessage, UploadProgress, device, Result, ServerState, Settings};
+use crate::localsend_lib::{server::start_api_server, server::ClientMessage, send::SendError, send::SendingFiles, send::SendSession, scanner::multicast::MulticastDeviceScanner, server::ServerMessage, send::UploadProgress, util::device, Result, server::ServerState, Settings};
 use crate::localsend_proto::{
 	Device,
 	constants::{DEFAULT_PORT, PROTOCOL_VERSION_2, DEFAULT_MULTICAST, DEFAULT_HTTP_PORT},

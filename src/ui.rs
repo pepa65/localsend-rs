@@ -5,7 +5,7 @@ use colored::Colorize;
 use comfy_table::Table;
 use indicatif::{ProgressBar, ProgressState, ProgressStyle};
 
-use crate::localsend_lib::{UploadProgress, MulticastDeviceScanner, Result, SendingFiles, Error};
+use crate::localsend_lib::{send::UploadProgress, scanner::multicast::MulticastDeviceScanner, Result, send::SendingFiles, Error};
 use crate::localsend_proto;
 use crate::localsend_proto::{dto::{FileDto, FileType}, Device};
 

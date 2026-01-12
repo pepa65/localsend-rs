@@ -1,25 +1,17 @@
-pub mod error;
-pub mod receive;
+#![allow(dead_code)]
+
 pub mod scanner;
 pub mod send;
 pub mod server;
-pub mod settings;
 pub mod util;
 
-pub use error::*;
+mod error;
+mod receive;
+mod settings;
 
 pub use {
-	Error, settings::Settings,
-	scanner::MulticastDeviceScanner,
-	send::{SendError, SendSession, SendingFiles, UploadProgress},
-	server::{ClientMessage, ServerMessage, ServerState, start_api_server},
-	util::device,
+	error::*,
+	settings::Settings,
 };
 
-pub use crate::localsend_proto::{
-	dto::FileType,
-	DeviceType,
-	route::ApiRoute,
-};
-
-pub type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, crate::localsend_lib::Error>;

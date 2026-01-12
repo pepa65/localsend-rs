@@ -1,8 +1,8 @@
 pub mod constants;
-pub mod device;
 pub mod dto;
-pub mod route;
+
+mod device;
+mod route;
 
 pub use route::ApiRoute;
-
-pub use crate::localsend_proto::device::{Device, DeviceType};
+pub use device::{Device, DeviceType};

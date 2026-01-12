@@ -1,3 +1,2 @@
-mod multicast;
+pub mod multicast;
 
-pub use multicast::*;

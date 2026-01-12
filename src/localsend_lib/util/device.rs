@@ -2,7 +2,7 @@ use std::{ffi::OsString, net::SocketAddr};
 
 use uuid::Uuid;
 
-use crate::Result;
+use crate::localsend_lib::Result;
 
 pub fn alias() -> String {
 	if let Ok(Ok(name)) = hostname::get().map(OsString::into_string)
