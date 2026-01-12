@@ -3,8 +3,8 @@ use std::{
 	sync::Arc,
 };
 
-use axum::{Router, routing::post};
 use crate::localsend_proto::{ApiRoute, dto::FileDto};
+use axum::{Router, routing::post};
 use tokio::{
 	net::TcpListener,
 	sync::{
@@ -14,9 +14,9 @@ use tokio::{
 };
 
 use crate::localsend_lib::{
-	send::{SendSession, UploadProgress},
 	Settings,
 	receive::ReceiveSession,
+	send::{SendSession, UploadProgress},
 };
 
 use self::controller::*;

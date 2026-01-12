@@ -1,14 +1,17 @@
 use std::{net::Ipv4Addr, path::PathBuf, sync::Arc, time::Duration};
 
+use crate::localsend_lib::{
+	Result, Settings, scanner::multicast::MulticastDeviceScanner, send::SendError, send::SendSession, send::SendingFiles, send::UploadProgress,
+	server::ClientMessage, server::ServerMessage, server::ServerState, server::start_api_server, util::device,
+};
+use crate::localsend_proto::{
+	Device,
+	constants::{DEFAULT_HTTP_PORT, DEFAULT_MULTICAST, DEFAULT_PORT, PROTOCOL_VERSION_2},
+};
+use crate::ui::{FileProgressBar, InteractiveUI};
 use clap::Parser;
 use itertools::Itertools;
 use simple_logger::SimpleLogger;
-use crate::ui::{FileProgressBar, InteractiveUI};
-use crate::localsend_lib::{server::start_api_server, server::ClientMessage, send::SendError, send::SendingFiles, send::SendSession, scanner::multicast::MulticastDeviceScanner, server::ServerMessage, send::UploadProgress, util::device, Result, server::ServerState, Settings};
-use crate::localsend_proto::{
-	Device,
-	constants::{DEFAULT_PORT, PROTOCOL_VERSION_2, DEFAULT_MULTICAST, DEFAULT_HTTP_PORT},
-};
 
 mod localsend_lib;
 mod localsend_proto;

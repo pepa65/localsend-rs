@@ -1,11 +1,11 @@
 use std::cmp::min;
 
-use futures_util::StreamExt;
 use crate::localsend_proto::{
-	constants::PROTOCOL_VERSION_1,
 	ApiRoute, Device,
+	constants::PROTOCOL_VERSION_1,
 	dto::{FileType, PrepareUploadRequestDto, PrepareUploadResponseDto, RegisterDto},
 };
+use futures_util::StreamExt;
 use once_cell::sync::Lazy;
 use reqwest::{Body, Client, StatusCode, header};
 use thiserror::Error;
@@ -126,7 +126,7 @@ impl SendSession {
 
 					let mut state = new_state.lock().await;
 					if let Some(session) = &mut state.send_session {
-						session.files.to_finish_status(file_id, send_result.is_ok());
+						session.files.mark_finish_status(file_id, send_result.is_ok());
 					}
 				}
 			});

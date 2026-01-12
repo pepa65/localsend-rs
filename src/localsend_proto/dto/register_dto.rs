@@ -33,7 +33,7 @@ impl From<Device> for RegisterDto {
 }
 
 impl RegisterDto {
-	pub fn to_device(self, ip: impl ToString, own_port: u16, own_https: bool) -> Device {
+	pub fn mark_device(self, ip: impl ToString, own_port: u16, own_https: bool) -> Device {
 		Device {
 			ip: ip.to_string(),
 			version: self.version.unwrap_or(FALLBACK_PROTOCOL_VERSION.to_owned()),

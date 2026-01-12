@@ -5,9 +5,12 @@ use colored::Colorize;
 use comfy_table::Table;
 use indicatif::{ProgressBar, ProgressState, ProgressStyle};
 
-use crate::localsend_lib::{send::UploadProgress, scanner::multicast::MulticastDeviceScanner, Result, send::SendingFiles, Error};
+use crate::localsend_lib::{Error, Result, scanner::multicast::MulticastDeviceScanner, send::SendingFiles, send::UploadProgress};
 use crate::localsend_proto;
-use crate::localsend_proto::{dto::{FileDto, FileType}, Device};
+use crate::localsend_proto::{
+	Device,
+	dto::{FileDto, FileType},
+};
 
 const PROGRESS_BAR_NO_NERD_TICK_CHARS: &str = "+x*";
 

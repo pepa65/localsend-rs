@@ -1,8 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "lowercase")]
 pub enum DeviceType {
+	#[default]
 	Mobile,
 	Desktop,
 	Web,
@@ -10,11 +11,11 @@ pub enum DeviceType {
 	Server,
 }
 
-impl Default for DeviceType {
+/*impl Default for DeviceType {
 	fn default() -> Self {
 		Self::Desktop
 	}
-}
+}*/
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Device {

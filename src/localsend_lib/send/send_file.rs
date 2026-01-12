@@ -3,9 +3,9 @@ use std::{
 	path::{Path, PathBuf},
 };
 
-use linked_hash_map::LinkedHashMap;
-use crate::localsend_proto::dto::{FileDto, FileType};
 use crate::Result;
+use crate::localsend_proto::dto::{FileDto, FileType};
+use linked_hash_map::LinkedHashMap;
 use uuid::Uuid;
 
 #[derive(Debug, Clone, PartialEq)]
@@ -126,15 +126,13 @@ impl SendingFiles {
 		}
 	}
 
-	pub fn to_finish_status(&mut self, file_id: String, success: bool) {
-		//self.files.get_mut(&file_id).map(|file| {
+	pub fn mark_finish_status(&mut self, file_id: String, success: bool) {
 		if let Some(file) = self.files.get_mut(&file_id) {
 			if success {
 				file.status = FileStatus::Finished;
 			} else {
 				file.status = FileStatus::Failed;
 			}
-			//});
 		}
 	}
 

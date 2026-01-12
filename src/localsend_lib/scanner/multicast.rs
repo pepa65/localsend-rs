@@ -49,7 +49,7 @@ impl MulticastDeviceScanner {
 					continue;
 				}
 
-				let device = register_dto.to_device(addr.ip().to_string(), addr.port(), false);
+				let device = register_dto.mark_device(addr.ip().to_string(), addr.port(), false);
 				if !devices.contains(&device) {
 					log::trace!("found device: {:?}", device);
 					devices.push(device);

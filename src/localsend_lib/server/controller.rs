@@ -1,15 +1,15 @@
 use std::{collections::HashMap, io, net::SocketAddr};
 
+use crate::localsend_proto::{
+	constants::DEFAULT_PORT,
+	dto::{PrepareUploadRequestDto, PrepareUploadResponseDto},
+};
 use axum::{
 	Json,
 	body::Body,
 	extract::{ConnectInfo, Query, State},
 };
 use futures_util::{TryStreamExt, pin_mut};
-use crate::localsend_proto::{
-	constants::DEFAULT_PORT,
-	dto::{PrepareUploadRequestDto, PrepareUploadResponseDto},
-};
 use tokio::{
 	fs::File,
 	io::{AsyncReadExt, AsyncWriteExt, BufWriter},
@@ -84,7 +84,7 @@ async fn prepare_upload(addr: SocketAddr, state: MutexServerState, dto: PrepareU
 	let receive_session = ReceiveSession {
 		session_id: session_id.clone(),
 		status: ReceiveSessionStatus::Waiting,
-		sender: dto.info.to_device(addr.ip().to_string(), DEFAULT_PORT, false),
+		sender: dto.info.mark_device(addr.ip().to_string(), DEFAULT_PORT, false),
 		files: HashMap::new(),
 		destination_directory: settings.destination.clone(),
 		progress_tx: None,
