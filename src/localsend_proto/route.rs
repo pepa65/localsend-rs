@@ -1,4 +1,4 @@
-use crate::{Device, PROTOCOL_VERSION_1, PROTOCOL_VERSION_2};
+use crate::localsend_proto::{Device, constants::PROTOCOL_VERSION_1, constants::PROTOCOL_VERSION_2};
 
 pub enum ApiRoute {
 	PrepareUpload,

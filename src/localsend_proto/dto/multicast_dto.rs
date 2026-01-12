@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{Device, DeviceType, FALLBACK_PROTOCOL_VERSION, PROTOCOL_VERSION_2};
+use crate::localsend_proto::{DeviceType, constants::PROTOCOL_VERSION_2};
 
 use super::ProtocolType;
 
@@ -20,21 +20,6 @@ pub struct MulticastDto {
 }
 
 impl MulticastDto {
-	pub fn v1(alias: impl ToString, device_model: Option<String>, device_type: DeviceType, fingerprint: impl ToString, announcement: bool) -> Self {
-		Self {
-			alias: alias.to_string(),
-			version: None,
-			device_model,
-			device_type: Some(device_type),
-			fingerprint: fingerprint.to_string(),
-			port: None,
-			protocol: None,
-			download: None,
-			announcement: Some(announcement),
-			announce: None,
-		}
-	}
-
 	pub fn v2(alias: impl ToString, device_model: Option<String>, device_type: DeviceType, fingerprint: impl ToString, port: u16, announcement: bool) -> Self {
 		Self {
 			alias: alias.to_string(),
@@ -47,20 +32,6 @@ impl MulticastDto {
 			download: None,
 			announcement: Some(announcement),
 			announce: None,
-		}
-	}
-
-	pub fn to_device(self, ip: impl ToString, own_port: u16, own_https: bool) -> Device {
-		Device {
-			ip: ip.to_string(),
-			version: self.version.unwrap_or(FALLBACK_PROTOCOL_VERSION.to_owned()),
-			port: self.port.unwrap_or(own_port),
-			https: self.protocol.map(|p| p == ProtocolType::Https).unwrap_or(own_https),
-			fingerprint: self.fingerprint,
-			alias: self.alias,
-			device_model: self.device_model,
-			device_type: self.device_type.unwrap_or_default(),
-			download: self.download.unwrap_or(false),
 		}
 	}
 }

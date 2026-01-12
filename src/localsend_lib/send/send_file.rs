@@ -4,10 +4,9 @@ use std::{
 };
 
 use linked_hash_map::LinkedHashMap;
-use localsend_proto::dto::{FileDto, FileType};
-use uuid::Uuid;
-
+use crate::localsend_proto::dto::{FileDto, FileType};
 use crate::Result;
+use uuid::Uuid;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum FileStatus {
@@ -39,18 +38,6 @@ pub struct SendingFiles {
 }
 
 impl SendingFiles {
-	pub fn get(&self, file_id: &String) -> Option<&SendingFile> {
-		self.files.get(file_id)
-	}
-
-	pub fn is_empty(&self) -> bool {
-		self.files.is_empty()
-	}
-
-	pub fn len(&self) -> usize {
-		self.files.len()
-	}
-
 	pub fn add_text(&mut self, text: impl ToString, preview: bool) {
 		let text = text.to_string();
 		let id = Uuid::new_v4().to_string();
@@ -59,7 +46,7 @@ impl SendingFiles {
 			id: id.clone(),
 			file_name: format!("{}.txt", text_hash),
 			size: text.len() as u64,
-			file_type: localsend_proto::dto::FileType::Text,
+			file_type: FileType::Text,
 			hash: Some(text_hash),
 			preview: if preview { Some(text) } else { None },
 		};

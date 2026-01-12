@@ -4,15 +4,10 @@ use async_trait::async_trait;
 use colored::Colorize;
 use comfy_table::Table;
 use indicatif::{ProgressBar, ProgressState, ProgressStyle};
-use localsend_lib::{
-	Error, Result,
-	scanner::MulticastDeviceScanner,
-	send::{SendingFiles, UploadProgress},
-};
-use localsend_proto::{
-	Device,
-	dto::{FileDto, FileType},
-};
+
+use crate::localsend_lib::{UploadProgress, MulticastDeviceScanner, Result, SendingFiles, Error};
+use crate::localsend_proto;
+use crate::localsend_proto::{dto::{FileDto, FileType}, Device};
 
 const PROGRESS_BAR_NO_NERD_TICK_CHARS: &str = "+x*";
 

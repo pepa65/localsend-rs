@@ -6,8 +6,8 @@ use axum::{
 	extract::{ConnectInfo, Query, State},
 };
 use futures_util::{TryStreamExt, pin_mut};
-use localsend_proto::{
-	DEFAULT_PORT,
+use crate::localsend_proto::{
+	constants::DEFAULT_PORT,
 	dto::{PrepareUploadRequestDto, PrepareUploadResponseDto},
 };
 use tokio::{
@@ -18,7 +18,7 @@ use tokio_util::io::StreamReader;
 
 use super::MutexServerState;
 
-use crate::{
+use crate::localsend_lib::{
 	Result,
 	receive::{ReceiveError, ReceiveSession, ReceiveSessionStatus, ReceivingFile},
 	send::{FileStatus, SendError, UploadProgress},
@@ -115,7 +115,7 @@ async fn prepare_upload(addr: SocketAddr, state: MutexServerState, dto: PrepareU
 		(None, Some(files))
 	} else {
 		let tx = _state.server_tx.clone();
-		tx.send(crate::server::ServerMessage::SelectedFiles(files)).await.unwrap();
+		tx.send(crate::localsend_lib::server::ServerMessage::SelectedFiles(files)).await.unwrap();
 
 		match _state.client_rx.recv().await {
 			None => return Err(ReceiveError::NothingSelected)?,

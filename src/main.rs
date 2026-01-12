@@ -2,18 +2,16 @@ use std::{net::Ipv4Addr, path::PathBuf, sync::Arc, time::Duration};
 
 use clap::Parser;
 use itertools::Itertools;
-use localsend_lib::{
-	Result, Settings,
-	scanner::MulticastDeviceScanner,
-	send::{SendError, SendSession, SendingFiles, UploadProgress},
-	server::{ClientMessage, ServerMessage, ServerState, start_api_server},
-	util::device,
-};
-use localsend_proto::{DEFAULT_HTTP_PORT, DEFAULT_MULTICAST, DEFAULT_PORT, Device, PROTOCOL_VERSION_2};
 use simple_logger::SimpleLogger;
-
 use crate::ui::{FileProgressBar, InteractiveUI};
+use crate::localsend_lib::{start_api_server, ClientMessage, SendError, SendingFiles, SendSession, MulticastDeviceScanner, ServerMessage, UploadProgress, device, Result, ServerState, Settings};
+use crate::localsend_proto::{
+	Device,
+	constants::{DEFAULT_PORT, PROTOCOL_VERSION_2, DEFAULT_MULTICAST, DEFAULT_HTTP_PORT},
+};
 
+mod localsend_lib;
+mod localsend_proto;
 mod ui;
 
 #[derive(Parser)]
@@ -209,7 +207,7 @@ async fn main() -> Result<()> {
 		let session = SendSession::new(&device, target, &send_files);
 
 		session.upload(shared_state.clone(), progress_tx.clone()).await?;
-		localsend_lib::Result::<()>::Ok(())
+		Ok(())
 	};
 
 	loop {

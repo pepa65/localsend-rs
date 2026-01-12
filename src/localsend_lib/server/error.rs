@@ -1,6 +1,6 @@
 use axum::{http::StatusCode, response::IntoResponse};
 
-use crate::{error::Error, receive::ReceiveError, send::SendError};
+use crate::localsend_lib::{error::Error, receive::ReceiveError, send::SendError};
 
 impl Error {
 	fn status_code(&self) -> StatusCode {

@@ -1,10 +1,10 @@
 use std::{collections::HashMap, path::PathBuf};
 
-use localsend_proto::Device;
+use crate::localsend_proto::Device;
 use thiserror::Error;
 use tokio::sync::mpsc::Sender;
 
-use crate::send::UploadProgress;
+use crate::localsend_lib::send::UploadProgress;
 
 use super::ReceivingFile;
 

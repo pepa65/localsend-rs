@@ -1,8 +1,9 @@
 use std::cmp::min;
 
 use futures_util::StreamExt;
-use localsend_proto::{
-	ApiRoute, Device, PROTOCOL_VERSION_1,
+use crate::localsend_proto::{
+	constants::PROTOCOL_VERSION_1,
+	ApiRoute, Device,
 	dto::{FileType, PrepareUploadRequestDto, PrepareUploadResponseDto, RegisterDto},
 };
 use once_cell::sync::Lazy;
@@ -16,7 +17,7 @@ use tokio::{
 use tokio_util::io::ReaderStream;
 use uuid::Uuid;
 
-use crate::{Result, send::FileStatus, server::MutexServerState};
+use crate::localsend_lib::{Result, send::FileStatus, server::MutexServerState};
 
 use super::{SendingFile, SendingFiles};
 

@@ -3,7 +3,7 @@ use std::{
 	time::{Duration, Instant},
 };
 
-use localsend_proto::{
+use crate::localsend_proto::{
 	Device, DeviceType,
 	dto::{MulticastDto, RegisterDto},
 };

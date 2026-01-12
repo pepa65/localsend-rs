@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{Device, DeviceType, FALLBACK_PROTOCOL_VERSION};
+use crate::localsend_proto::{Device, DeviceType, constants::FALLBACK_PROTOCOL_VERSION};
 
 use super::ProtocolType;
 
