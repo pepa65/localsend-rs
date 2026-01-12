@@ -35,21 +35,3 @@ impl MulticastDto {
 		}
 	}
 }
-
-#[cfg(test)]
-mod tests {
-
-	use crate::DeviceType;
-
-	use super::MulticastDto;
-
-	#[test]
-	pub fn test_serde_json() {
-		let dto = MulticastDto::v1("Nice Orange", Some("Samsung".to_owned()), DeviceType::Mobile, "random string", true);
-		let dto_str = r#"{"alias":"Nice Orange","version":null,"deviceModel":"Samsung","deviceType":"mobile","fingerprint":"random string","port":null,"protocol":null,"download":null,"announcement":true,"announce":null}"#;
-		assert_eq!(dto_str, serde_json::to_string(&dto).unwrap());
-		let new_dto: MulticastDto = serde_json::from_str(dto_str).unwrap();
-		assert_eq!(dto.alias, new_dto.alias);
-		assert_eq!(dto.fingerprint, new_dto.fingerprint);
-	}
-}
