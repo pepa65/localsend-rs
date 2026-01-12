@@ -1,0 +1,51 @@
+---
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  doc:
+    name: Build Doc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: run cargo doc
+        run: |
+          sudo apt-get -y install musl-tools
+          rustup target add x86_64-unknown-linux-musl
+          cargo doc
+
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: run cargo test
+        run: |
+          sudo apt-get -y install musl-tools
+          rustup target add x86_64-unknown-linux-musl
+          cargo test --all-features
+
+  formatting:
+    name: Code Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: running rustfmt
+        run: |
+          sudo apt-get -y install musl-tools
+          rustup target add x86_64-unknown-linux-musl
+          rustup component add --toolchain stable-x86_64-unknown-linux-musl rustfmt
+          files=$(find . -name '*.rs')
+          IFS=$'\n'; for file in $files; do
+            rustfmt --check "$file"
+          done

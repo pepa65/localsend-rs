@@ -1,10 +1,40 @@
-# localsnd 0.4.1
+[![version](https://img.shields.io/crates/v/localsnd.svg)](https://crates.io/crates/localsnd)
+[![build](https://github.com/pepa65/localsnd/actions/workflows/ci.yml/badge.svg)](https://github.com/pepa65/localsnd/actions/workflows/ci.yml)
+[![dependencies](https://deps.rs/repo/github/pepa65/localsnd/status.svg)](https://deps.rs/repo/github/pepa65/localsnd)
+[![docs](https://img.shields.io/badge/docs-localsnd-blue.svg)](https://docs.rs/crate/localsnd/latest)
+[![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/pepa65/localsnd/blob/main/LICENSE)
+[![downloads](https://img.shields.io/crates/d/localsnd.svg)](https://crates.io/crates/localsnd)
+
+# localsnd 0.5.0
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
-```bash
-cargo install --git https://github.com/pepa65/localsnd
+### Install standalone single-binary
+```sh
+wget https://github.com/pepa65/localsnd/releases/download/0.5.0/localsnd
+sudo mv localsnd /usr/local/bin
+sudo chown root:root /usr/local/bin/localsnd
+sudo chmod +x /usr/local/bin/localsnd
 ```
+
+### Install with cargo
+If not installed yet, install a **Rust toolchain**, see <https://www.rust-lang.org/tools/install>
+
+#### Direct from crates.io
+`cargo install localsnd`
+
+#### Direct from repo
+`cargo install --git https://github.com/pepa65/localsnd`
+
+#### Static build (avoiding GLIBC incompatibilities)
+```sh
+git clone https://github.com/pepa65/localsnd
+cd localsnd
+rustup target add x86_64-unknown-linux-musl
+cargo rel  # Alias in .cargo/config.toml
+```
+
+The binary will be at `target/x86_64-unknown-linux-musl/release/localsnd`
 
 ## Usage
 ### Send
@@ -33,7 +63,7 @@ localsnd receive --quick-save
 
 ### Help
 ```
-localsnd 0.4.1 - CLI implementation of localsend
+localsnd 0.5.0 - CLI implementation of localsend
 USAGE: localsnd [OPTIONS] <COMMAND>
 COMMANDS:
   receive  Run as receive server

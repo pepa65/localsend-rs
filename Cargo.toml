@@ -1,19 +1,25 @@
 [package]
 name = "localsnd"
-version = "0.4.1"
+version = "0.5.0"
 edition = "2024"
 authors = ["zpp0196 <zpp0196@gmail.com>", "github.com/pepa65"]
 description = "CLI implementation of localsend"
 repository = "https://github.com/pepa65/localsnd"
+documentation = "https://docs.rs/localsnd"
+readme = "README.md"
 license = "MIT"
+keywords = ["cli", "localsend"]
+categories = ["command-line-utilities"]
 
-[[bin]]
-name = "localsnd"
-path = "src/main.rs"
+[package.metadata.binstall]
+pkg-url = "{repo}/releases/download/{version}/{name}"
+pkg-fmt = "bin"
+disabled-strategies = ["quick-install", "compile"]
+target = "x86_64-unknown-linux-musl"
+target-family = "Linux"
+target-arch = "X86_64"
 
 [dependencies]
-#localsend-lib = { path = "localsend-lib" }
-#localsend-proto = { path = "localsend-proto" }
 anyhow = "1.0.79"
 async-stream = "0.3.6"
 async-trait = "0.1.77"
@@ -45,13 +51,9 @@ tokio-util = "0.7.18"
 uuid = { version = "1.19", features = ["v4"] }
 walkdir = "2.5.0"
 
-#[workspace]
-#members = ["localsend-lib", "localsend-proto"]
-#resolver = "2"
-
 [profile.release]
 opt-level = 'z'
 lto = true
 codegen-units = 1
 panic = 'abort'
-strip = 'symbols'
+strip = true
