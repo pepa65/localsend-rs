@@ -1,4 +1,4 @@
-# localsnd 0.4.0
+# localsnd 0.4.1
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
@@ -33,7 +33,7 @@ localsnd receive --quick-save
 
 ### Help
 ```
-localsnd 0.4.0 - CLI implementation of localsend
+localsnd 0.4.1 - CLI implementation of localsend
 USAGE: localsnd [OPTIONS] <COMMAND>
 COMMANDS:
   receive  Run as receive server
