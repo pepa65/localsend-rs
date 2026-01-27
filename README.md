@@ -5,13 +5,13 @@
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/pepa65/localsnd/blob/main/LICENSE)
 [![downloads](https://img.shields.io/crates/d/localsnd.svg)](https://crates.io/crates/localsnd)
 
-# localsnd 0.5.3
+# localsnd 0.5.4
 CLI implementation of [localsend](https://github.com/localsend/localsend).
 
 ## Install
 ### Install standalone single-binary
 ```sh
-wget https://github.com/pepa65/localsnd/releases/download/0.5.3/localsnd
+wget https://github.com/pepa65/localsnd/releases/download/0.5.4/localsnd
 sudo mv localsnd /usr/local/bin
 sudo chown root:root /usr/local/bin/localsnd
 sudo chmod +x /usr/local/bin/localsnd
@@ -63,7 +63,7 @@ localsnd receive --quick-save
 
 ### Help
 ```
-localsnd 0.5.3 - CLI implementation of localsend
+localsnd 0.5.4 - CLI implementation of localsend
 USAGE: localsnd [OPTIONS] <COMMAND>
 COMMANDS:
   receive  Run as receive server
